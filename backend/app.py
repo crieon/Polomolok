@@ -8,10 +8,19 @@ from src.models import db
 from src.routes import register_routes
 from src.websocket import register_websocket_events
 
-# Configure logging
+# Create logs directory if it doesn't exist
+logs_dir = os.path.join(os.path.dirname(__file__), 'logs')
+os.makedirs(logs_dir, exist_ok=True)
+
+# Configure logging to file and console
+log_file = os.path.join(logs_dir, 'error.log')
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
@@ -65,6 +74,18 @@ def create_app(config_name=None):
         if app.debug:
             return {'error': 'Not found'}, 404
         return app.send_static_file('index.html')
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        """Handle 500 errors"""
+        logger.error(f'Internal Server Error: {error}', exc_info=True)
+        return {'error': 'Internal server error', 'message': str(error)}, 500
+
+    @app.errorhandler(Exception)
+    def handle_exception(error):
+        """Handle any unhandled exception"""
+        logger.error(f'Unhandled exception: {error}', exc_info=True)
+        return {'error': 'Server error', 'message': str(error)}, 500
 
     @app.route('/api/health', methods=['GET'])
     def health_check():

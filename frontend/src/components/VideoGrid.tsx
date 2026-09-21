@@ -23,7 +23,6 @@ const VideoGrid: React.FC = () => {
   }, [remoteStreams]);
 
   const videoCount = Object.keys(remoteStreams).length + (localStream ? 1 : 0);
-  const gridCols = Math.min(2, Math.ceil(Math.sqrt(videoCount)));
 
   return (
     <div className="w-full h-full flex flex-col">

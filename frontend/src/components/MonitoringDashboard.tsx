@@ -51,7 +51,7 @@ const MonitoringDashboard: React.FC = () => {
       setMonitoringActive(true);
 
       // Connect to WebSocket room
-      await websocketService.connect(user.user_id);
+      await websocketService.connect();
       websocketService.joinRoom(room.room_code, user.user_id);
 
       // Set up event listeners

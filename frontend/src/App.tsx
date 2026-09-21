@@ -9,7 +9,7 @@ interface LoginFormData {
 }
 
 const App: React.FC = () => {
-  const { user, login, logout, isAuthenticated } = useAppStore();
+  const { login, logout, isAuthenticated } = useAppStore();
   const [loginForm, setLoginForm] = useState<LoginFormData>({ username: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');

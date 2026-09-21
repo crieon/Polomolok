@@ -8,7 +8,7 @@ class WebSocketService {
     this.url = window.location.origin;
   }
 
-  connect(userId: number): Promise<void> {
+  connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
         this.socket = io(this.url, {
