@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: centercam-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - SECRET_KEY=dev-secret-key
+      - DATABASE_URL=sqlite:///centercam.db
+      - DEBUG=True
+    volumes:
+      - ./backend:/app/backend
+    working_dir: /app/backend
+    command: python -m flask run --host=0.0.0.0
+    networks:
+      - centercam-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: centercam-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - centercam-network
+    depends_on:
+      - backend
+
+networks:
+  centercam-network:
+    driver: bridge
