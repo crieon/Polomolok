@@ -34,7 +34,7 @@ def create_app(config_name=None):
 
     # Create Flask app
     app = Flask(__name__,
-                static_folder='../frontend/dist',
+                static_folder='static',
                 static_url_path='/')
 
     # Load configuration
