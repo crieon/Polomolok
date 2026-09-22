@@ -1,0 +1,35 @@
+.measurement-form {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.size-display {
+  background: #e7f3ff;
+  border: 2px solid #2c5f8d;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.size-display strong {
+  display: block;
+  color: #1a3a52;
+  margin-bottom: 0.5rem;
+}
+
+.size-display p {
+  font-size: 1.5rem;
+  color: #2c5f8d;
+  font-weight: bold;
+}
+
+.info-box ul {
+  margin: 1rem 0 0 1.5rem;
+  color: #1a3a52;
+  line-height: 1.6;
+}
+
+.info-box li {
+  margin-bottom: 0.5rem;
+}

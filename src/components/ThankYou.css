@@ -1,0 +1,160 @@
+.thank-you-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+}
+
+.thank-you-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.thank-you-card h1 {
+  font-size: 2.5rem;
+  color: #1a3a52;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.confirmation-details {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item .label {
+  font-weight: 600;
+  color: #1a3a52;
+}
+
+.detail-item .value {
+  color: #666;
+  text-align: right;
+}
+
+.detail-item .value.highlight {
+  color: #2c5f8d;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.next-steps {
+  background: #e7f3ff;
+  border-left: 4px solid #2c5f8d;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.next-steps h3 {
+  color: #1a3a52;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.next-steps ol {
+  margin-left: 1.5rem;
+  color: #333;
+  line-height: 1.8;
+}
+
+.next-steps li {
+  margin-bottom: 0.75rem;
+}
+
+.info-message {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem 0;
+  color: #856404;
+}
+
+.info-message p {
+  margin: 0;
+}
+
+.footer-text {
+  margin-top: 2rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.footer-text strong {
+  color: #1a3a52;
+}
+
+@media (max-width: 600px) {
+  .thank-you-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .thank-you-card h1 {
+    font-size: 2rem;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-item .value {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+}

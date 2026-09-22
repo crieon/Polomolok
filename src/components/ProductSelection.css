@@ -1,0 +1,22 @@
+.product-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #1a3a52;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #2c5f8d;
+  padding-bottom: 0.75rem;
+}
+
+.disclaimer-box {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 2rem;
+  color: #856404;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
