@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberta Curtains & Blinds - Pricing Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .promo-banner {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 16px 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .form-section {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 350px;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .progress-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .progress-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: bold;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .progress-dot.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .progress-dot.completed {
+            background: #4caf50;
+            border-color: #4caf50;
+            color: white;
+        }
+
+        .progress-item label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .step-subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .product-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .product-card.selected {
+            border-color: #667eea;
+            background: #f8f9ff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .product-card-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .product-card-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .input-group.full {
+            grid-template-columns: 1fr;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="number"]::placeholder {
+            color: #999;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            background: #f5f5f5;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .radio-option span,
+        .checkbox-option span {
+            flex: 1;
+        }
+
+        .price-tag {
+            float: right;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        /* Sidebar Styles */
+        .estimate-card {
+            background: #f8f9ff;
+            border: 2px solid #e8eaf6;
+            border-radius: 8px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .estimate-card h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .estimate-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+
+        .estimate-line.total {
+            border-bottom: none;
+            border-top: 2px solid #667eea;
+            padding-top: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #667eea;
+            margin-top: 12px;
+        }
+
+        .estimate-line.negative {
+            color: #4caf50;
+        }
+
+        .savings-badge {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .confirmation-details {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-item .label {
+            color: #999;
+            font-weight: 500;
+        }
+
+        .detail-item .value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .detail-item .value.highlight {
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4caf50;
+            color: white;
+            font-size: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .next-steps {
+            background: #f8f9ff;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .next-steps h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .next-steps ol {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .next-steps li {
+            margin-bottom: 8px;
+        }
+
+        .info-message {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .estimate-card {
+                position: static;
+            }
+
+            .progress {
+                flex-wrap: wrap;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="promo-banner">🎉 LIMITED TIME: Get 15% OFF all blind installations!</div>
+
+        <div class="header">
+            <h1>Alberta Curtains & Blinds</h1>
+            <p>Professional Window Treatments - Custom Pricing Calculator</p>
+        </div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <!-- Progress Indicator -->
+                <div class="progress">
+                    <div class="progress-item">
+                        <div class="progress-dot" id="progress-1">✓</div>
+                        <label>Product</label>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-dot" id="progress-2">✓</div>
+                        <label>Measurements</label>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-dot" id="progress-3">3</div>
+                        <label>Options</label>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-dot" id="progress-4">4</div>
+                        <label>Estimate</label>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-dot" id="progress-5">5</div>
+                        <label>Quote</label>
+                    </div>
+                </div>
+
+                <!-- Step 1: Product Selection -->
+                <div class="step active" id="step-1">
+                    <div class="step-title">Select Your Product</div>
+                    <div class="step-subtitle">Choose from our wide range of blinds and curtains</div>
+
+                    <div class="form-group">
+                        <label class="section-label">Blinds</label>
+                        <div class="product-grid" id="blinds-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="section-label">Curtains</label>
+                        <div class="product-grid" id="curtains-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="nextStep(1)">Next: Measurements</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Measurements -->
+                <div class="step" id="step-2">
+                    <div class="step-title">Window Measurements</div>
+                    <div class="step-subtitle">Provide your window dimensions for accurate pricing</div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div>
+                                <label>Width (inches)</label>
+                                <input type="number" id="width" min="6" max="120" placeholder="36" onchange="updateEstimate()">
+                            </div>
+                            <div>
+                                <label>Height (inches)</label>
+                                <input type="number" id="height" min="6" max="120" placeholder="60" onchange="updateEstimate()">
+                            </div>
+                        </div>
+                        <div class="input-group full">
+                            <div>
+                                <label>Number of Windows</label>
+                                <input type="number" id="quantity" min="1" max="20" value="1" onchange="updateEstimate()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Size Classification:</strong>
+                        <div id="size-classification">Select dimensions to see classification</div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(2)">Back</button>
+                        <button class="btn-primary" onclick="nextStep(2)">Next: Customize Options</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Options -->
+                <div class="step" id="step-3">
+                    <div class="step-title">Customize Your Blinds</div>
+                    <div class="step-subtitle">Select options that fit your needs</div>
+
+                    <!-- Operation -->
+                    <div class="form-group">
+                        <label class="section-label">Operation</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="operation" value="standard" checked onchange="updateEstimate()">
+                                <span>Standard Operation</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="operation" value="motorized" onchange="updateEstimate()">
+                                <span>Motorized <span class="price-tag">+$199.00</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Mounting -->
+                    <div class="form-group">
+                        <label class="section-label">Mounting</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="mounting" value="inside" checked onchange="updateEstimate()">
+                                <span>Inside Mount</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="mounting" value="outside" onchange="updateEstimate()">
+                                <span>Outside Mount</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Light Control -->
+                    <div class="form-group">
+                        <label class="section-label">Light Control</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="lightControl" value="light-filtering" checked onchange="updateEstimate()">
+                                <span>Light Filtering</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="lightControl" value="room-darkening" onchange="updateEstimate()">
+                                <span>Room Darkening <span class="price-tag">+$50.00</span></span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="lightControl" value="blackout" onchange="updateEstimate()">
+                                <span>Blackout <span class="price-tag">+$75.00</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Upgrades -->
+                    <div class="form-group">
+                        <label class="section-label">Optional Upgrades</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="upgrade" value="cordless" onchange="updateEstimate()">
+                                <span>Cordless/Child Safe <span class="price-tag">+$25.00</span></span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="upgrade" value="thermal" onchange="updateEstimate()">
+                                <span>Thermal Insulated <span class="price-tag">+$40.00</span></span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="upgrade" value="pet-safe" onchange="updateEstimate()">
+                                <span>Pet-Safe Design <span class="price-tag">+$30.00</span></span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="upgrade" value="smart-control" onchange="updateEstimate()">
+                                <span>Smart Control <span class="price-tag">+$120.00</span></span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="upgrade" value="motorized-backup" onchange="updateEstimate()">
+                                <span>Motorized Backup Battery <span class="price-tag">+$35.00</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Installation -->
+                    <div class="form-group">
+                        <label class="section-label">Installation</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="installation" value="customer" onchange="updateEstimate()">
+                                <span>Customer Installation</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="installation" value="professional" checked onchange="updateEstimate()">
+                                <span>Professional Installation</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Installation Information:</strong>
+                        Professional installation includes measurement confirmation and professional setup. First window: $125, each additional window: $50
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(3)">Back</button>
+                        <button class="btn-primary" onclick="nextStep(3)">Next: Review Estimate</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Estimate Review -->
+                <div class="step" id="step-4">
+                    <div class="step-title">Review Your Estimate</div>
+                    <div class="step-subtitle">Your pricing details and summary</div>
+
+                    <div id="estimate-details">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(4)">Back</button>
+                        <button class="btn-primary" onclick="nextStep(4)">Next: Request Quote</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Quote Form -->
+                <div class="step" id="step-5">
+                    <div class="step-title">Request Your Quote</div>
+                    <div class="step-subtitle">Provide your contact information</div>
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="customerName" placeholder="John Smith" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="customerEmail" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="customerPhone" placeholder="(780) 555-0123" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>City</label>
+                        <select id="customerCity" required>
+                            <option value="">Select a city...</option>
+                            <option value="Edmonton">Edmonton</option>
+                            <option value="Calgary">Calgary</option>
+                            <option value="Red Deer">Red Deer</option>
+                            <option value="Lethbridge">Lethbridge</option>
+                            <option value="Grande Prairie">Grande Prairie</option>
+                            <option value="Fort McMurray">Fort McMurray</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Contact Method</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="contactMethod" value="email" checked>
+                                <span>Email</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="contactMethod" value="phone">
+                                <span>Phone</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="contactMethod" value="text">
+                                <span>Text Message</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Notes (Optional)</label>
+                        <textarea id="customerNotes" placeholder="Any special requirements or questions?" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; resize: vertical; min-height: 80px;"></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(5)">Back</button>
+                        <button class="btn-primary" onclick="submitQuote()">Submit Quote Request</button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Thank You -->
+                <div class="step" id="step-6">
+                    <div style="text-align: center;">
+                        <div class="success-icon">✓</div>
+                        <div class="step-title">Thank You!</div>
+                        <p class="step-subtitle">Your quote request has been received</p>
+
+                        <div class="confirmation-details" id="confirmation-summary">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="next-steps">
+                            <h3>What Happens Next?</h3>
+                            <ol>
+                                <li>Our team will review your estimate and project details within 24 hours</li>
+                                <li>We'll contact you via <span id="contact-method-display">email</span> to confirm your measurement appointment</li>
+                                <li>One of our professionals will visit your location to take precise measurements</li>
+                                <li>You'll receive a final customized quote after the measurement</li>
+                            </ol>
+                        </div>
+
+                        <div class="info-message">
+                            <p><strong>Check your email</strong> – A confirmation message has been sent to <span id="email-display">your email</span></p>
+                        </div>
+
+                        <button class="btn-primary" style="max-width: 300px; margin-top: 20px;" onclick="resetForm()">Get Another Estimate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Estimate -->
+            <div class="sidebar">
+                <div class="estimate-card">
+                    <h3>YOUR ESTIMATE</h3>
+                    <div id="sidebar-content">
+                        <p class="empty-state">Select a product to get started calculating your estimate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Pricing Configuration
+        const CONFIG = {
+            blinds: [
+                { id: 'roller', name: 'Roller Blinds', basePrice: 75, category: 'blinds' },
+                { id: 'vertical', name: 'Vertical Blinds', basePrice: 95, category: 'blinds' },
+                { id: 'mini', name: 'Mini Blinds', basePrice: 65, category: 'blinds' },
+                { id: 'cellular', name: 'Cellular Shades', basePrice: 120, category: 'blinds' },
+                { id: 'roman', name: 'Roman Shades', basePrice: 140, category: 'blinds' },
+                { id: 'panel', name: 'Panel Track Blinds', basePrice: 180, category: 'blinds' },
+                { id: 'honeycomb', name: 'Honeycomb Blinds', basePrice: 110, category: 'blinds' },
+            ],
+            curtains: [
+                { id: 'sheer', name: 'Sheer Curtains', basePrice: 50, category: 'curtains' },
+                { id: 'blackout', name: 'Blackout Curtains', basePrice: 80, category: 'curtains' },
+                { id: 'thermal', name: 'Thermal Lined Curtains', basePrice: 100, category: 'curtains' },
+                { id: 'velvet', name: 'Velvet Curtains', basePrice: 120, category: 'curtains' },
+                { id: 'linen', name: 'Linen Curtains', basePrice: 90, category: 'curtains' },
+            ],
+            options: {
+                operation: { standard: 0, motorized: 199 },
+                mounting: { inside: 0, outside: 0 },
+                lightControl: { 'light-filtering': 0, 'room-darkening': 50, 'blackout': 75 },
+                upgrades: { cordless: 25, thermal: 40, 'pet-safe': 30, 'smart-control': 120, 'motorized-backup': 35 },
+            },
+            discount: 0.15,
+            taxRate: 0.05,
+            installationPrices: { professional: { first: 125, additional: 50 }, customer: 0 },
+        };
+
+        let currentStep = 1;
+        let quote = {
+            product: null,
+            productCategory: null,
+            width: null,
+            height: null,
+            quantity: 1,
+            operation: 'standard',
+            mounting: 'inside',
+            lightControl: 'light-filtering',
+            upgrades: [],
+            installation: 'professional',
+        };
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-CA', {
+                style: 'currency',
+                currency: 'CAD',
+            }).format(value);
+        }
+
+        function getSizeClassification(width, height) {
+            if (!width || !height) return 'Not yet determined';
+            const area = (width * height) / 144;
+            if (area <= 15) return 'Small (≤15 sq ft)';
+            if (area <= 30) return 'Medium (15-30 sq ft)';
+            return 'Large (>30 sq ft)';
+        }
+
+        function calculateEstimate() {
+            if (!quote.product || !quote.width || !quote.height) return null;
+
+            const product = [...CONFIG.blinds, ...CONFIG.curtains].find(p => p.id === quote.product);
+            if (!product) return null;
+
+            let basePrice = product.basePrice * quote.quantity;
+            let optionsPrice = 0;
+
+            optionsPrice += CONFIG.options.operation[quote.operation] || 0;
+            optionsPrice += CONFIG.options.mounting[quote.mounting] || 0;
+            optionsPrice += CONFIG.options.lightControl[quote.lightControl] || 0;
+
+            quote.upgrades.forEach(upgrade => {
+                optionsPrice += CONFIG.options.upgrades[upgrade] || 0;
+            });
+
+            const subtotal = basePrice + optionsPrice;
+            const discountAmount = subtotal * CONFIG.discount;
+            const afterDiscount = subtotal - discountAmount;
+
+            let installationCost = 0;
+            if (quote.installation === 'professional') {
+                installationCost = CONFIG.installationPrices.professional.first +
+                    (quote.quantity - 1) * CONFIG.installationPrices.professional.additional;
+            }
+
+            const subtotalBeforeTax = afterDiscount + installationCost;
+            const gst = subtotalBeforeTax * CONFIG.taxRate;
+            const total = subtotalBeforeTax + gst;
+
+            return {
+                basePrice,
+                optionsPrice,
+                subtotal,
+                discountAmount,
+                afterDiscount,
+                installationCost,
+                subtotalBeforeTax,
+                gst,
+                total,
+            };
+        }
+
+        function updateEstimate() {
+            quote.width = parseInt(document.getElementById('width')?.value) || null;
+            quote.height = parseInt(document.getElementById('height')?.value) || null;
+            quote.quantity = parseInt(document.getElementById('quantity')?.value) || 1;
+            quote.operation = document.querySelector('input[name="operation"]:checked')?.value || 'standard';
+            quote.mounting = document.querySelector('input[name="mounting"]:checked')?.value || 'inside';
+            quote.lightControl = document.querySelector('input[name="lightControl"]:checked')?.value || 'light-filtering';
+            quote.installation = document.querySelector('input[name="installation"]:checked')?.value || 'professional';
+
+            const upgrades = [];
+            document.querySelectorAll('input[name="upgrade"]:checked').forEach(checkbox => {
+                upgrades.push(checkbox.value);
+            });
+            quote.upgrades = upgrades;
+
+            const estimate = calculateEstimate();
+
+            if (document.getElementById('size-classification')) {
+                document.getElementById('size-classification').textContent = getSizeClassification(quote.width, quote.height);
+            }
+
+            if (estimate) {
+                const productName = [...CONFIG.blinds, ...CONFIG.curtains].find(p => p.id === quote.product)?.name;
+                const sidebarHTML = `
+                    <div class="estimate-summary" style="margin-bottom: 16px;">
+                        <p class="product-name" style="font-weight: 600; margin-bottom: 4px;">${productName}</p>
+                        <p class="product-size" style="font-size: 13px; color: #999;">
+                            ${quote.width}" × ${quote.height}"
+                        </p>
+                        <p class="quantity" style="font-size: 13px; color: #999;">Qty: ${quote.quantity}</p>
+                    </div>
+
+                    <div class="estimate-breakdown">
+                        <div class="estimate-line">
+                            <span>Base Price</span>
+                            <span>${formatCurrency(estimate.basePrice)}</span>
+                        </div>
+                        ${estimate.optionsPrice > 0 ? `
+                            <div class="estimate-line">
+                                <span>Options</span>
+                                <span>${formatCurrency(estimate.optionsPrice)}</span>
+                            </div>
+                        ` : ''}
+                        <div class="estimate-line negative">
+                            <span>Discount 15%</span>
+                            <span>-${formatCurrency(estimate.discountAmount)}</span>
+                        </div>
+                        ${estimate.installationCost > 0 ? `
+                            <div class="estimate-line">
+                                <span>Installation</span>
+                                <span>${formatCurrency(estimate.installationCost)}</span>
+                            </div>
+                        ` : ''}
+                        <div class="estimate-line">
+                            <span>GST (5%)</span>
+                            <span>${formatCurrency(estimate.gst)}</span>
+                        </div>
+                        <div class="estimate-line total">
+                            <span>Total</span>
+                            <span>${formatCurrency(estimate.total)}</span>
+                        </div>
+                    </div>
+                    <div class="savings-badge">
+                        SAVE ${formatCurrency(estimate.discountAmount)}
+                    </div>
+                `;
+                document.getElementById('sidebar-content').innerHTML = sidebarHTML;
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`)?.classList.add('active');
+            updateProgressIndicator(step);
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgressIndicator(step) {
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById(`progress-${i}`);
+                if (!dot) continue;
+                dot.classList.remove('active', 'completed');
+                if (i < step) {
+                    dot.classList.add('completed');
+                    dot.textContent = '✓';
+                } else if (i === step) {
+                    dot.classList.add('active');
+                    dot.textContent = i;
+                } else {
+                    dot.textContent = i;
+                }
+            }
+        }
+
+        function nextStep(from) {
+            if (from === 1 && !quote.product) {
+                alert('Please select a product');
+                return;
+            }
+            if (from === 2 && (!quote.width || !quote.height)) {
+                alert('Please enter width and height');
+                return;
+            }
+            currentStep = from + 1;
+            if (currentStep === 4) {
+                displayEstimateDetails();
+            }
+            showStep(currentStep);
+        }
+
+        function prevStep(from) {
+            currentStep = from - 1;
+            showStep(currentStep);
+        }
+
+        function displayEstimateDetails() {
+            const estimate = calculateEstimate();
+            if (!estimate) return;
+
+            const productName = [...CONFIG.blinds, ...CONFIG.curtains].find(p => p.id === quote.product)?.name;
+            const html = `
+                <div class="confirmation-details">
+                    <div class="detail-item">
+                        <span class="label">Product</span>
+                        <span class="value">${productName}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Size</span>
+                        <span class="value">${quote.width}" × ${quote.height}"</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Quantity</span>
+                        <span class="value">${quote.quantity}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Classification</span>
+                        <span class="value">${getSizeClassification(quote.width, quote.height)}</span>
+                    </div>
+                </div>
+
+                <div class="estimate-breakdown">
+                    <div class="estimate-line">
+                        <span>Base Price</span>
+                        <span>${formatCurrency(estimate.basePrice)}</span>
+                    </div>
+                    ${estimate.optionsPrice > 0 ? `
+                        <div class="estimate-line">
+                            <span>Options</span>
+                            <span>${formatCurrency(estimate.optionsPrice)}</span>
+                        </div>
+                    ` : ''}
+                    <div class="estimate-line negative">
+                        <span>Discount 15%</span>
+                        <span style="color: #4caf50;">-${formatCurrency(estimate.discountAmount)}</span>
+                    </div>
+                    ${estimate.installationCost > 0 ? `
+                        <div class="estimate-line">
+                            <span>Installation</span>
+                            <span>${formatCurrency(estimate.installationCost)}</span>
+                        </div>
+                    ` : ''}
+                    <div class="estimate-line">
+                        <span>GST (5%)</span>
+                        <span>${formatCurrency(estimate.gst)}</span>
+                    </div>
+                    <div class="estimate-line total">
+                        <span>TOTAL</span>
+                        <span>${formatCurrency(estimate.total)}</span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('estimate-details').innerHTML = html;
+        }
+
+        function submitQuote() {
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const city = document.getElementById('customerCity').value;
+
+            if (!name || !email || !phone || !city) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const estimate = calculateEstimate();
+            const productName = [...CONFIG.blinds, ...CONFIG.curtains].find(p => p.id === quote.product)?.name;
+            const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value || 'email';
+
+            const confirmationHTML = `
+                <div class="detail-item">
+                    <span class="label">Name</span>
+                    <span class="value">${name}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Email</span>
+                    <span class="value">${email}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Phone</span>
+                    <span class="value">${phone}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">City</span>
+                    <span class="value">${city}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Estimated Total</span>
+                    <span class="value highlight">${formatCurrency(estimate.total)} CAD</span>
+                </div>
+            `;
+
+            document.getElementById('confirmation-summary').innerHTML = confirmationHTML;
+            document.getElementById('contact-method-display').textContent = contactMethod;
+            document.getElementById('email-display').textContent = email;
+
+            currentStep = 6;
+            showStep(6);
+        }
+
+        function resetForm() {
+            quote = {
+                product: null,
+                productCategory: null,
+                width: null,
+                height: null,
+                quantity: 1,
+                operation: 'standard',
+                mounting: 'inside',
+                lightControl: 'light-filtering',
+                upgrades: [],
+                installation: 'professional',
+            };
+            currentStep = 1;
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'checkbox' || el.type === 'radio') {
+                    el.checked = false;
+                } else {
+                    el.value = '';
+                }
+            });
+            document.querySelector('input[name="operation"]').checked = true;
+            document.querySelector('input[name="mounting"]').checked = true;
+            document.querySelector('input[name="lightControl"]').checked = true;
+            document.querySelector('input[name="installation"]').checked = true;
+            document.querySelector('input[name="contactMethod"]').checked = true;
+            document.getElementById('quantity').value = 1;
+            document.getElementById('sidebar-content').innerHTML = '<p class="empty-state">Select a product to get started calculating your estimate.</p>';
+            showStep(1);
+        }
+
+        // Initialize
+        function initializeProducts() {
+            const blindsGrid = document.getElementById('blinds-grid');
+            const curtainsGrid = document.getElementById('curtains-grid');
+
+            CONFIG.blinds.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-card-title">${product.name}</div>
+                    <div class="product-card-price">From ${formatCurrency(product.basePrice)}</div>
+                `;
+                card.onclick = () => selectProduct(product.id, 'blinds', card);
+                blindsGrid.appendChild(card);
+            });
+
+            CONFIG.curtains.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-card-title">${product.name}</div>
+                    <div class="product-card-price">From ${formatCurrency(product.basePrice)}</div>
+                `;
+                card.onclick = () => selectProduct(product.id, 'curtains', card);
+                curtainsGrid.appendChild(card);
+            });
+        }
+
+        function selectProduct(productId, category, cardElement) {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            cardElement.classList.add('selected');
+            quote.product = productId;
+            quote.productCategory = category;
+            updateEstimate();
+        }
+
+        initializeProducts();
+        showStep(1);
+    </script>
+</body>
+</html>
