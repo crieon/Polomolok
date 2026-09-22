@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import config from "./config/pricing";
-import { calculateEstimate, formatCurrency } from "./utils/calculations";
+import { calculateEstimate } from "./utils/calculations";
 
 import PromoBanner from "./components/PromoBanner";
 import ProductSelection from "./components/ProductSelection";

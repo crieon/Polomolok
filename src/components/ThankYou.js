@@ -1,5 +1,5 @@
 import React from "react";
-import { formatCurrency, getProductName } from "../utils/calculations";
+import { formatCurrency } from "../utils/calculations";
 import "./ThankYou.css";
 
 const ThankYou = ({ quote, onStartOver }) => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import config, { formatCurrency } from "../config/pricing";
+import config from "../config/pricing";
 import "./OptionsStep.css";
 
 const OptionsStep = ({
